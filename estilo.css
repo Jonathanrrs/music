@@ -1,0 +1,191 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.titulo {
+    text-align: center;
+    margin-top: 0;
+    height: 80px;
+    font-size: 35px;
+    padding-top: 23px;
+    /* border: 1px solid red; */
+    background: black;
+    color: white;
+    font-family: 'Rowdies', cursive;
+    margin-bottom: 0;
+}
+
+.navbar {
+    padding-top: 3px;
+    text-align: center;
+    width: 300px;
+    position: relative;
+    height: 900px;
+    visibility: visible;
+    background: aquamarine;
+    float: left;
+    
+}
+
+.formAgregar {
+    /* border: 1px solid black; */
+    margin-bottom: 50px;
+    /* float: right; */
+    width: 84%;
+    text-align: center;
+}
+
+.formName, .formAutor, .formYear {
+    display: block;
+    margin-left: 700px;
+    width: 500px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    height: 25px;
+    /* border-color: red; */
+    outline: none;
+    padding-left: 10px;
+}
+.formButton {
+    border-radius: 15px;
+    background: aquamarine;
+    border: none;
+    width: 150px;
+    height: 35px;
+    font-size: 17px;
+    outline: none;
+    font-family: 'Rowdies', cursive;
+}
+
+.formButton:hover {
+    cursor: pointer;
+    
+}
+
+.formTitle{
+    font-family: 'Rowdies', cursive;
+    font-size: 25px;
+}
+.infoTitle {
+    font-family: 'Rowdies', cursive;
+    font-size: 25px;
+}
+
+.agregadas {
+    width: 84%;
+    text-align: center;
+}
+.agregadasTitle {
+    font-family: 'Rowdies', cursive;
+    font-size: 25px;
+   
+}
+
+.agregadasBorde {
+    border: 1px solid black;
+    width: 15%;
+    margin-left: 350px;
+    border-radius: 10px;
+    border: none;
+   background: aquamarine;
+
+
+  
+}
+.cancionTitle {
+    text-align: center;
+    font-family: 'Rowdies', cursive;
+    font-size: 28px;
+    margin-bottom: 0;
+}
+
+.cancionName {
+    text-align: center;
+    font-family: 'Rowdies', cursive;
+}
+.img {
+    height: 100px;
+    /* border: 1px solid black; */
+    width: 100px;
+    padding-top: 0;
+    padding-left: 80px;
+
+    
+}
+
+.agregadasInfo p {
+    /* border: 1px solid black; */
+    font-family: 'Rowdies', cursive;
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+.agregadasBorde {
+    margin: auto;
+    display: inline-block;
+    margin-bottom: 50px;
+    margin-left: 85px;
+}
+
+.logos {
+    height: 40px;
+}
+.btns {
+    border: none;
+    background: none;
+    margin-left: 20px;
+    outline: none;
+}
+.btns:hover {
+    cursor: pointer;
+}
+.logoDelete {
+    height: 30px;
+}
+.btnDelete {
+    border: none;
+    /* background: none; */
+    margin-left: 72px;
+    background: white;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    width: 150px;
+    outline: none;
+}
+.btnDelete:hover {
+    cursor: pointer;
+}
+.mover {
+    padding-left: 70px;
+}
+.cancionesFavs {
+    font-family: 'Rowdies', cursive;
+    font-size: 18px;
+}
+
+.playing {
+    font-family: 'Rowdies', cursive;
+    font-size: 13px;
+}
+
+.subtitulo {
+    text-align: center;
+    font-family: 'Rowdies', cursive;
+    font-size: 25px;
+    margin-bottom: 50px;
+    width: 84%;
+    text-align: center;
+}
+
+.playing-img {
+    height: 25px;
+    
+}
+.loving {
+    font-family: 'Rowdies', cursive;
+    font-size: 13px;
+}
+.cora {
+    height: 15px;
+}

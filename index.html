@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt one</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1 class="titulo">Reproductor Projekt One</h1>
+    <div class="navbar">
+        <p class="infoTitle">Mis canciones</p>
+        <p class="playing" id="playing">Sin reproducción</p>
+        <p class="cancionesFavs">Lista de canciones favoritas</p>
+        <div id="cancionesLoves">
+            <p  class="loving" id="loving"><!-- No hay en este momento --></p>
+        </div>
+        
+    </div>
+    <div>
+        <form id="form" class="formAgregar">
+            <p class="formTitle">Agrega una nueva canción!</p>
+            <input id="name" class="formName" type="text" placeholder="Nombre de la canción" required autofocus>
+            <input id="autor" class="formAutor" type="text" placeholder="Autor de la canción" required>
+            <input id="year" class="formYear" type="number" placeholder="Año de la canción" required>
+            <button id="btnAgregar"class="formButton" type="button">Agregar</button>
+        </form>
+        <div id="print">
+            <p class="subtitulo">Lista de canciones</p>
+            
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
