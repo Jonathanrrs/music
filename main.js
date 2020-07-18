@@ -7,6 +7,7 @@ class Main {
             ui.addSong();
             ui.print();
             ui.resetForm()
+            console.log(ui);
         });
 
         document.querySelector("#print").addEventListener("click", (event) => {
@@ -16,6 +17,7 @@ class Main {
          });
          document.querySelector("#print").addEventListener("click", (event) => {
             ui.love(event.target);
+            console.log(ui);
          });
          document.querySelector("#print").addEventListener("click", (event) => {
             ui.play(event.target);

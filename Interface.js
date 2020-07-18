@@ -6,7 +6,13 @@ export default class Interface {
     }
 
     addSong() {
-        this.listSong.push(this.getData())
+        let data = this.getData();
+        if(data.name == "" || data.author == "" || data.year == "") {
+            swal("Completa los campos!", "Haz click para continuar!", "error");
+        } else{
+            this.listSong.push(data)
+        }
+        
     }
     getData() {
         let name = document.querySelector("#name").value;
@@ -58,6 +64,7 @@ export default class Interface {
         let finded = this.find(element.dataset.delete);
         if (element.name == "delete" && finded > -1) {
             this.listSong.splice(finded, 1);
+            swal("Eliminado correctamente!", "Haz click para continuar!", "success");
             console.log(this.findLove(loveDelete));
             console.log(findedLove);
             if(findedLove>-1) {
@@ -73,15 +80,20 @@ export default class Interface {
                 document.querySelector("#playing").innerHTML = "Sin reproducción"
             } 
         }
-      
-        
     }
 
     love(element) {
         if(element.name == "love") {
-            this.loveSong.push(element.dataset.loving)
-            document.querySelector("#loving").innerHTML = "";
-            this.printLove();  
+            let founded = this.findLove(element.dataset.loving)
+            if(founded >= 0) {
+                swal("Ya existe en la lista!", "Haz click para continuar!", "error");
+            } else{
+                this.loveSong.push(element.dataset.loving)
+                swal("Agregada a la lista!", "Haz click para continuar!", "success"); 
+                document.querySelector("#loving").innerHTML = "";
+                this.printLove();
+            }
+
         }
     }
 
@@ -96,11 +108,11 @@ export default class Interface {
         let searching = this.loveSong.map(search => search);
         for (let index = 0; index < searching.length; index++) {
             if (searching[index] == data) {
-                console.log(searching[index]);
                 return index;
             }
         }
     }
+
 
     resetForm() {
         document.querySelector("#form").reset();
@@ -113,11 +125,13 @@ export default class Interface {
             if(this.playingSong.length == 0) {
                 this.playingSong.push(element.dataset.suena)
                 playing.innerHTML = `${element.dataset.nombre} <img class="playing-img" src="imgs/playing.png">`
+                swal("Reproduciendo!", "Haz click para continuar!", "success");
             }
             else{
                 this.playingSong.splice(0,1);
                 this.playingSong.push(element.dataset.suena);
                 playing.innerHTML = `${element.dataset.nombre} <img class="playing-img" src="imgs/playing.png">`
+                swal("Reproduciendo!", "Haz click para continuar!", "success");
             }
         }
     
