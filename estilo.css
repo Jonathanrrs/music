@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    
 }
 .titulo {
     text-align: center;
@@ -20,7 +21,7 @@ body {
     text-align: center;
     width: 300px;
     position: relative;
-    height: 900px;
+    min-height: 100vh;
     visibility: visible;
     background: aquamarine;
     float: left;

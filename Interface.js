@@ -1,3 +1,4 @@
+import Song from './Song.js';
 export default class Interface {
     constructor() {
         this.listSong = [];
@@ -5,27 +6,104 @@ export default class Interface {
         this.playingSong = [];
     }
 
+
+    //searches
+    findSong(data) {
+        let searching = this.listSong.map(search => search.name);
+        for (let index = 0; index < searching.length; index++) {
+            if (searching[index] === data) {
+                return index;
+            }
+
+        }
+    }
+
+    findLove(data) {
+        for (let index = 0; index < this.loveSong.length; index++) {
+            if (this.loveSong[index] == data) {
+                return index;
+            }
+        }
+    }
+
+    findPlaying(data) {
+        for (let index = 0; index < this.playingSong.length; index++) {
+            if (this.playingSong[index] == data) {
+                return index;
+            }
+        }
+    }
+    //Actions
     addSong() {
         let data = this.getData();
         if(data.name == "" || data.author == "" || data.year == "") {
             swal("Completa los campos!", "Haz click para continuar!", "error");
         } else{
-            this.listSong.push(data)
+            let found = this.findSong(data.name);
+            if(found >= 0) {
+                swal("Ya existe esta canción!", "Haz click para continuar!", "error");
+            } else{
+                this.listSong.push(data);
+            }
         }
-        
-    }
-    getData() {
-        let name = document.querySelector("#name").value;
-        let author = document.querySelector("#autor").value;
-        let year = document.querySelector("#year").value;
-        let objData = {
-            name: name,
-            author: author,
-            year: year
-        };
-        return objData;
     }
 
+    deleteSong(element) {
+        let loveDelete = element.dataset.love;
+        let foundLove = this.findLove(loveDelete)
+        let found = this.findSong(element.dataset.delete);
+        if (element.name == "delete" && found > -1) {
+            this.listSong.splice(finded, 1);
+            swal("Eliminado correctamente!", "Haz click para continuar!", "success");
+            if(findedLove>-1) {
+                this.loveSong.splice(foundLove,1);
+                document.querySelector("#loving").innerHTML = "";
+                this.printLove();
+            }
+            if(this.loveSong.length == 0) {
+                document.querySelector("#loving").innerHTML = "No hay en este momento";
+            }
+            if(this.playingSong[0] === element.dataset.delete) {
+                this.playingSong.splice(0,1)
+                document.querySelector("#playing").innerHTML = "Sin reproducción"
+            } 
+        }
+    }
+
+    love(element) {
+        if(element.name == "love") {
+            let found = this.findLove(element.dataset.loving);
+            if(found >= 0) {
+                swal("Ya existe en la lista!", "Haz click para continuar!", "error");
+            } else{
+                this.loveSong.push(element.dataset.loving);
+                swal("Agregada a la lista!", "Haz click para continuar!", "success"); 
+                document.querySelector("#loving").innerHTML = "";
+                this.printLove();
+            }
+
+        }
+    }
+
+    play(element) {
+        let playing = document.querySelector("#playing");
+        if(element.name == "play") {
+            if(this.playingSong.length == 0) {
+                this.playingSong.push(element.dataset.suena)
+                playing.innerHTML = `${element.dataset.nombre} <img class="playing-img" src="imgs/playing.png">`
+                swal("Reproduciendo!", "Haz click para continuar!", "success");
+            }
+            else{
+                this.playingSong.splice(0,1);
+                this.playingSong.push(element.dataset.suena);
+                playing.innerHTML = `${element.dataset.nombre} <img class="playing-img" src="imgs/playing.png">`
+                swal("Reproduciendo!", "Haz click para continuar!", "success");
+            }
+        }
+    
+    }
+
+    //Prints
     print() {
         for (let i = 0; i < this.listSong.length; i++) { 
             let songPrint = document.querySelector("#print");
@@ -48,55 +126,6 @@ export default class Interface {
         
     }
 
-
-    find(data) {
-        let searching = this.listSong.map(search => search.name);
-        for (let index = 0; index < searching.length; index++) {
-            if (searching[index] === data) {
-                return index;
-            }
-
-        }
-    }
-    deleteSong(element) {
-        let loveDelete = element.dataset.love;
-        let findedLove = this.findLove(loveDelete)
-        let finded = this.find(element.dataset.delete);
-        if (element.name == "delete" && finded > -1) {
-            this.listSong.splice(finded, 1);
-            swal("Eliminado correctamente!", "Haz click para continuar!", "success");
-            console.log(this.findLove(loveDelete));
-            console.log(findedLove);
-            if(findedLove>-1) {
-                this.loveSong.splice(findedLove,1);
-                document.querySelector("#loving").innerHTML = "";
-                this.printLove();
-            }
-            if(this.loveSong.length == 0) {
-                document.querySelector("#loving").innerHTML = "No hay en este momento";
-            }
-            if(this.playingSong[0] === element.dataset.delete) {
-                this.playingSong.splice(0,1)
-                document.querySelector("#playing").innerHTML = "Sin reproducción"
-            } 
-        }
-    }
-
-    love(element) {
-        if(element.name == "love") {
-            let founded = this.findLove(element.dataset.loving)
-            if(founded >= 0) {
-                swal("Ya existe en la lista!", "Haz click para continuar!", "error");
-            } else{
-                this.loveSong.push(element.dataset.loving)
-                swal("Agregada a la lista!", "Haz click para continuar!", "success"); 
-                document.querySelector("#loving").innerHTML = "";
-                this.printLove();
-            }
-
-        }
-    }
-
     printLove() {
         let loving = document.querySelector("#loving");
         for (let i = 0; i < this.loveSong.length; i++) {
@@ -104,48 +133,27 @@ export default class Interface {
         } 
     }
 
-    findLove(data) {
-        let searching = this.loveSong.map(search => search);
-        for (let index = 0; index < searching.length; index++) {
-            if (searching[index] == data) {
-                return index;
-            }
-        }
+    //UI
+    getData() {
+        let name = document.querySelector("#name").value;
+        let author = document.querySelector("#autor").value;
+        let year = document.querySelector("#year").value;
+        let objData = {
+            name: name,
+            author: author,
+            year: year
+        };
+        let song = new Song(objData);
+        return song;
     }
-
 
     resetForm() {
         document.querySelector("#form").reset();
     }
 
-    play(element) {
-        let playing = document.querySelector("#playing");
-        if(element.name == "play") {
-            console.log(element.dataset.suena);
-            if(this.playingSong.length == 0) {
-                this.playingSong.push(element.dataset.suena)
-                playing.innerHTML = `${element.dataset.nombre} <img class="playing-img" src="imgs/playing.png">`
-                swal("Reproduciendo!", "Haz click para continuar!", "success");
-            }
-            else{
-                this.playingSong.splice(0,1);
-                this.playingSong.push(element.dataset.suena);
-                playing.innerHTML = `${element.dataset.nombre} <img class="playing-img" src="imgs/playing.png">`
-                swal("Reproduciendo!", "Haz click para continuar!", "success");
-            }
-        }
-    
-    }
 
-    findPlaying(data) {
-        let searching = this.playingSong.map(search => search);
-        console.log(searching);
-        for (let index = 0; index < searching.length; index++) {
-            if (searching[index] == data) {
-                return index;
-            }
-        }
-    }
+
+  
 
     
 }
