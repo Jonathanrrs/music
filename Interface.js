@@ -1,4 +1,3 @@
-import Song from './Song.js';
 export default class Interface {
     constructor() {
         this.listSong = [];
@@ -8,30 +7,23 @@ export default class Interface {
 
 
     //searches
+    /* Refactor */
     findSong(data) {
         let searching = this.listSong.map(search => search.name);
-        for (let index = 0; index < searching.length; index++) {
-            if (searching[index] === data) {
-                return index;
-            }
-
-        }
+        let position = searching.indexOf(data);
+        return position;
     }
 
+    /* Refactor */
     findLove(data) {
-        for (let index = 0; index < this.loveSong.length; index++) {
-            if (this.loveSong[index] == data) {
-                return index;
-            }
-        }
+        let position = this.loveSong.indexOf(data);
+        return position;
     }
+    /* Refactor */
 
     findPlaying(data) {
-        for (let index = 0; index < this.playingSong.length; index++) {
-            if (this.playingSong[index] == data) {
-                return index;
-            }
-        }
+        let position = this.playingSong.indexOf(data);
+        return position;
     }
     //Actions
     addSong() {
@@ -53,9 +45,9 @@ export default class Interface {
         let foundLove = this.findLove(loveDelete)
         let found = this.findSong(element.dataset.delete);
         if (element.name == "delete" && found > -1) {
-            this.listSong.splice(finded, 1);
+            this.listSong.splice(found, 1);
             swal("Eliminado correctamente!", "Haz click para continuar!", "success");
-            if(findedLove>-1) {
+            if(foundLove>-1) {
                 this.loveSong.splice(foundLove,1);
                 document.querySelector("#loving").innerHTML = "";
                 this.printLove();
@@ -65,7 +57,7 @@ export default class Interface {
             }
             if(this.playingSong[0] === element.dataset.delete) {
                 this.playingSong.splice(0,1)
-                document.querySelector("#playing").innerHTML = "Sin reproducción"
+                document.querySelector("#playing").innerHTML = "Sin reproducción";
             } 
         }
     }
@@ -143,8 +135,7 @@ export default class Interface {
             author: author,
             year: year
         };
-        let song = new Song(objData);
-        return song;
+        return objData;
     }
 
     resetForm() {
